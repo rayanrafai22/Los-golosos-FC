@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Los Golosos FC</title>
+<title>Los Golosos FC - Liguilla</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: #080b14;
     display: flex;
@@ -17,515 +16,161 @@
     padding: 30px 16px;
     font-family: 'Rajdhani', sans-serif;
   }
-
   .poster {
     width: 540px;
     background: linear-gradient(160deg, #0e1628 0%, #0a0f1e 60%, #0e1020 100%);
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
-    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
   }
-
-  .poster::before {
-    content: '';
-    position: absolute;
-    top: -80px; left: 50%;
-    transform: translateX(-50%);
-    width: 300px; height: 200px;
-    background: radial-gradient(ellipse, rgba(30,100,255,0.2) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .header {
-    padding: 24px 28px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .trophy-icon { font-size: 30px; filter: drop-shadow(0 0 8px rgba(255,200,50,0.5)); }
-
-  .header-text h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: #fff;
-    line-height: 1;
-  }
-
-  .header-text span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .badge {
-    margin-left: auto;
-    background: rgba(30,100,255,0.12);
-    border: 1px solid rgba(30,100,255,0.28);
-    color: #5b8fff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-
-  .section-label {
-    padding: 14px 28px 8px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-  }
-
+  .header { padding: 24px 28px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .trophy-icon { font-size: 30px; }
+  .header-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: #fff; }
+  .header-text span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .badge { margin-left: auto; background: rgba(30,100,255,0.12); border: 1px solid rgba(30,100,255,0.28); color: #5b8fff; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+  .section-label { padding: 14px 28px 8px; font-size: 10px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.25); }
   .col-headers {
-    display: grid;
-    grid-template-columns: 30px 1fr 62px 28px 28px 28px 34px 34px;
-    padding: 8px 20px 8px 18px;
-    background: rgba(255,255,255,0.03);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .col-headers span {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    text-align: center;
+    display: grid; grid-template-columns: 30px 1fr 62px 28px 28px 28px 34px 34px;
+    padding: 8px 20px; background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.28); text-align: center;
   }
   .col-headers .name-col { text-align: left; }
-
   .table-body { padding: 5px 0 8px; }
-
   .row {
-    display: grid;
-    grid-template-columns: 30px 1fr 62px 28px 28px 28px 34px 34px;
-    align-items: center;
-    padding: 10px 20px 10px 18px;
-    margin: 2px 10px;
-    border-radius: 10px;
-    position: relative;
-    animation: fadeSlide 0.4s ease both;
+    display: grid; grid-template-columns: 30px 1fr 62px 28px 28px 28px 34px 34px;
+    align-items: center; padding: 10px 20px; margin: 2px 10px; border-radius: 10px;
+    transition: background 0.2s;
   }
-
-  .row:nth-child(1) { animation-delay: 0.05s; }
-  .row:nth-child(2) { animation-delay: 0.10s; }
-  .row:nth-child(3) { animation-delay: 0.15s; }
-  .row:nth-child(4) { animation-delay: 0.20s; }
-  .row:nth-child(5) { animation-delay: 0.25s; }
-
-  @keyframes fadeSlide {
-    from { opacity: 0; transform: translateX(-10px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-
   .row:hover { background: rgba(255,255,255,0.04); }
-
-  .row.first {
-    background: linear-gradient(90deg, rgba(255,190,30,0.09) 0%, rgba(255,190,30,0.02) 100%);
-    border: 1px solid rgba(255,190,30,0.14);
-  }
-
-  .rank {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    color: rgba(255,255,255,0.22);
-    text-align: center;
-  }
+  .row.first { background: linear-gradient(90deg, rgba(255,190,30,0.09) 0%, rgba(255,190,30,0.02) 100%); border: 1px solid rgba(255,190,30,0.14); }
+  .rank { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: rgba(255,255,255,0.22); text-align: center; }
   .row.first .rank { color: #ffc41e; }
-
   .player-info { display: flex; align-items: center; gap: 9px; }
-  .flag { font-size: 17px; line-height: 1; }
-
-  .player-name { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.3px; }
-  .team-name {
-    font-size: 9px; font-weight: 600;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 1px; text-transform: uppercase; margin-top: 1px;
-  }
-
-  .pts {
-    text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: #fff;
-  }
+  .flag { font-size: 17px; }
+  .player-name { font-size: 14px; font-weight: 700; color: #fff; }
+  .team-name { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-top: 1px; }
+  .pts { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; }
   .row.first .pts { color: #ffc41e; text-shadow: 0 0 10px rgba(255,196,30,0.35); }
-
-  .cell {
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.45);
-  }
+  .cell { text-align: center; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); }
   .cell.g { color: rgba(80,220,120,0.85); }
   .cell.p { color: rgba(255,80,80,0.75); }
-
-  .divider {
-    height: 1px;
-    background: rgba(255,255,255,0.06);
-    margin: 4px 0;
-  }
-
+  .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 4px 0; }
   .jornada-block { padding: 0 18px 12px; }
-
-  .jornada-title {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    padding: 12px 10px 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .jornada-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.07);
-  }
-
-  .match {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    margin: 3px 0;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-
+  .jornada-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.25); padding: 12px 10px 8px; display: flex; align-items: center; gap: 8px; }
+  .jornada-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+  .match { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin: 3px 0; border-radius: 8px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.05); }
   .match.descanso { opacity: 0.4; }
-
-  .match-team {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex: 1;
-  }
-
-  .match-team.right {
-    flex-direction: row-reverse;
-    text-align: right;
-  }
-
+  .match-team { display: flex; align-items: center; gap: 7px; flex: 1; }
+  .match-team.right { flex-direction: row-reverse; text-align: right; }
   .match-flag { font-size: 15px; }
-
-  .match-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.3px;
-  }
-
+  .match-name { font-size: 13px; font-weight: 700; color: #fff; }
   .match-name.loser { color: rgba(255,255,255,0.35); }
-
-  .score-box {
-    display: flex;
-    align-items: center;
-    margin: 0 10px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    flex-shrink: 0;
-  }
-
-  .score-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    padding: 2px 10px;
-    color: #fff;
-    min-width: 36px;
-    text-align: center;
-    line-height: 1.2;
-  }
-
+  .score-box { display: flex; align-items: center; margin: 0 10px; background: rgba(0,0,0,0.3); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); }
+  .score-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; padding: 2px 10px; color: #fff; min-width: 36px; text-align: center; }
   .score-num.winner-score { color: #3dff7a; }
-  .score-num.loser-score  { color: rgba(255,255,255,0.3); }
-  .score-num.draw-score   { color: #ffc41e; }
-
-  .score-sep {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    color: rgba(255,255,255,0.2);
-    padding: 2px 2px;
-  }
-
-  .descanso-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    flex: 1;
-    text-align: center;
-  }
-
-  .footer {
-    padding: 12px 20px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
+  .score-num.loser-score { color: rgba(255,255,255,0.3); }
+  .score-num.draw-score { color: #ffc41e; }
+  .score-sep { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: rgba(255,255,255,0.2); }
+  .descanso-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.25); text-transform: uppercase; flex: 1; text-align: center; }
+  .footer { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
   .legend { display: flex; gap: 12px; }
-
-  .legend-item {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: rgba(255,255,255,0.22);
-    text-transform: uppercase;
-  }
+  .legend-item { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.22); text-transform: uppercase; }
   .legend-item span { color: rgba(255,255,255,0.4); }
-
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #3dff7a;
-    box-shadow: 0 0 6px #3dff7a;
-    animation: pulse 1.4s ease-in-out infinite;
-    display: inline-block;
-    margin-right: 5px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.85); }
-  }
-
-  .live-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: #3dff7a;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #3dff7a; box-shadow: 0 0 6px #3dff7a; animation: pulse 1.4s infinite; display: inline-block; margin-right: 5px; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+  .live-label { font-size: 10px; font-weight: 700; color: #3dff7a; letter-spacing: 2px; text-transform: uppercase; }
 </style>
 </head>
 <body>
-<div class="poster">
+<div class="poster" id="app"></div>
+<script>
+  fetch('data.json')
+    .then(res => res.json())
+    .then(data => {
+      const app = document.getElementById('app');
+      const badgeText = `J${data.jornadaActual} / J${data.totalJornadas}`;
 
-  <div class="header">
-    <div class="trophy-icon">⚽</div>
-    <div class="header-text">
-      <h1>Los Golosos FC</h1>
-      <span>Liguilla · Clasificación</span>
-    </div>
-    <div class="badge">J2 / J5</div>
-  </div>
+      // Construir tabla de posiciones
+      let rows = '';
+      data.jugadores.forEach((j, idx) => {
+        const firstClass = idx === 0 ? 'first' : '';
+        rows += `
+          <div class="row ${firstClass}">
+            <div class="rank">${idx+1}</div>
+            <div class="player-info">
+              <div class="flag">${j.pais}</div>
+              <div><div class="player-name">${j.nombre}</div><div class="team-name">${j.equipo}</div></div>
+            </div>
+            <div class="pts">${j.pts}</div>
+            <div class="cell ${j.g > 0 ? 'g' : ''}">${j.g}</div>
+            <div class="cell">${j.e}</div>
+            <div class="cell ${j.p > 0 ? 'p' : ''}">${j.p}</div>
+            <div class="cell">${j.gf}</div>
+            <div class="cell">${j.gc}</div>
+          </div>
+        `;
+      });
 
-  <div class="section-label">Tabla de posiciones</div>
+      // Agrupar partidos por jornada
+      const jornadas = {};
+      data.partidos.forEach(p => {
+        if (!jornadas[p.jornada]) jornadas[p.jornada] = [];
+        jornadas[p.jornada].push(p);
+      });
 
-  <div class="col-headers">
-    <span>#</span>
-    <span class="name-col">Jugador</span>
-    <span>Pts</span>
-    <span>G</span>
-    <span>E</span>
-    <span>P</span>
-    <span>GF</span>
-    <span>GC</span>
-  </div>
+      let matchesHtml = '';
+      for (let j = 1; j <= data.totalJornadas; j++) {
+        if (!jornadas[j]) continue;
+        matchesHtml += `<div class="jornada-block"><div class="jornada-title">Jornada ${j}</div>`;
+        jornadas[j].forEach(m => {
+          if (m.descanso) {
+            matchesHtml += `
+              <div class="match descanso">
+                <div class="match-team"><span class="match-flag">${data.jugadores.find(jug => jug.nombre === m.local)?.pais || ''}</span><span class="match-name">${m.local}</span></div>
+                <span class="descanso-label">· Descansa ·</span>
+                <div class="match-team right"></div>
+              </div>
+            `;
+          } else {
+            const localJug = data.jugadores.find(jug => jug.nombre === m.local);
+            const visitJug = data.jugadores.find(jug => jug.nombre === m.visitante);
+            const localGanador = m.golesLocal > m.golesVisitante;
+            const empate = m.golesLocal === m.golesVisitante;
+            matchesHtml += `
+              <div class="match">
+                <div class="match-team"><span class="match-flag">${localJug?.pais || ''}</span><span class="match-name ${!localGanador && !empate ? 'loser' : ''}">${m.local}</span></div>
+                <div class="score-box">
+                  <span class="score-num ${localGanador ? 'winner-score' : (empate ? 'draw-score' : 'loser-score')}">${m.golesLocal}</span>
+                  <span class="score-sep">—</span>
+                  <span class="score-num ${!localGanador && !empate ? 'winner-score' : (empate ? 'draw-score' : 'loser-score')}">${m.golesVisitante}</span>
+                </div>
+                <div class="match-team right"><span class="match-flag">${visitJug?.pais || ''}</span><span class="match-name ${localGanador || empate ? 'loser' : ''}">${m.visitante}</span></div>
+              </div>
+            `;
+          }
+        });
+        matchesHtml += `</div>`;
+      }
 
-  <div class="table-body">
-
-    <div class="row first">
-      <div class="rank">1</div>
-      <div class="player-info">
-        <div class="flag">🇫🇷</div>
-        <div><div class="player-name">Ubaldo</div><div class="team-name">Francia</div></div>
-      </div>
-      <div class="pts">4</div>
-      <div class="cell g">1</div>
-      <div class="cell">1</div>
-      <div class="cell">0</div>
-      <div class="cell">7</div>
-      <div class="cell">4</div>
-    </div>
-
-    <div class="row">
-      <div class="rank">2</div>
-      <div class="player-info">
-        <div class="flag">🇵🇹</div>
-        <div><div class="player-name">Kauan</div><div class="team-name">Portugal</div></div>
-      </div>
-      <div class="pts">3</div>
-      <div class="cell g">1</div>
-      <div class="cell">0</div>
-      <div class="cell">0</div>
-      <div class="cell">4</div>
-      <div class="cell">1</div>
-    </div>
-
-    <div class="row">
-      <div class="rank">3</div>
-      <div class="player-info">
-        <div class="flag">🇩🇪</div>
-        <div><div class="player-name">Iván</div><div class="team-name">Alemania</div></div>
-      </div>
-      <div class="pts">3</div>
-      <div class="cell g">1</div>
-      <div class="cell">0</div>
-      <div class="cell p">1</div>
-      <div class="cell">5</div>
-      <div class="cell">6</div>
-    </div>
-
-    <div class="row">
-      <div class="rank">4</div>
-      <div class="player-info">
-        <div class="flag">🇮🇹</div>
-        <div><div class="player-name">Kamal</div><div class="team-name">Italia</div></div>
-      </div>
-      <div class="pts">1</div>
-      <div class="cell">0</div>
-      <div class="cell">1</div>
-      <div class="cell">0</div>
-      <div class="cell">3</div>
-      <div class="cell">3</div>
-    </div>
-
-    <div class="row">
-      <div class="rank">5</div>
-      <div class="player-info">
-        <div class="flag">🇪🇸</div>
-        <div><div class="player-name">Rayan</div><div class="team-name">España</div></div>
-      </div>
-      <div class="pts">0</div>
-      <div class="cell">0</div>
-      <div class="cell">0</div>
-      <div class="cell p">2</div>
-      <div class="cell">3</div>
-      <div class="cell">8</div>
-    </div>
-
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- JORNADA 1 -->
-  <div class="jornada-block">
-    <div class="jornada-title">Jornada 1</div>
-
-    <div class="match">
-      <div class="match-team">
-        <span class="match-flag">🇩🇪</span>
-        <span class="match-name">Iván</span>
-      </div>
-      <div class="score-box">
-        <span class="score-num winner-score">4</span>
-        <span class="score-sep">—</span>
-        <span class="score-num loser-score">2</span>
-      </div>
-      <div class="match-team right">
-        <span class="match-flag">🇪🇸</span>
-        <span class="match-name loser">Rayan</span>
-      </div>
-    </div>
-
-    <div class="match">
-      <div class="match-team">
-        <span class="match-flag">🇮🇹</span>
-        <span class="match-name">Kamal</span>
-      </div>
-      <div class="score-box">
-        <span class="score-num draw-score">3</span>
-        <span class="score-sep">—</span>
-        <span class="score-num draw-score">3</span>
-      </div>
-      <div class="match-team right">
-        <span class="match-flag">🇫🇷</span>
-        <span class="match-name">Ubaldo</span>
-      </div>
-    </div>
-
-    <div class="match descanso">
-      <div class="match-team">
-        <span class="match-flag">🇵🇹</span>
-        <span class="match-name">Kauan</span>
-      </div>
-      <span class="descanso-label">· Descansa ·</span>
-      <div class="match-team right"></div>
-    </div>
-  </div>
-
-  <!-- JORNADA 2 -->
-  <div class="jornada-block">
-    <div class="jornada-title">Jornada 2</div>
-
-    <div class="match">
-      <div class="match-team">
-        <span class="match-flag">🇩🇪</span>
-        <span class="match-name loser">Iván</span>
-      </div>
-      <div class="score-box">
-        <span class="score-num loser-score">1</span>
-        <span class="score-sep">—</span>
-        <span class="score-num winner-score">4</span>
-      </div>
-      <div class="match-team right">
-        <span class="match-flag">🇵🇹</span>
-        <span class="match-name">Kauan</span>
-      </div>
-    </div>
-
-    <div class="match">
-      <div class="match-team">
-        <span class="match-flag">🇫🇷</span>
-        <span class="match-name">Ubaldo</span>
-      </div>
-      <div class="score-box">
-        <span class="score-num winner-score">4</span>
-        <span class="score-sep">—</span>
-        <span class="score-num loser-score">1</span>
-      </div>
-      <div class="match-team right">
-        <span class="match-flag">🇪🇸</span>
-        <span class="match-name loser">Rayan</span>
-      </div>
-    </div>
-
-    <div class="match descanso">
-      <div class="match-team">
-        <span class="match-flag">🇮🇹</span>
-        <span class="match-name">Kamal</span>
-      </div>
-      <span class="descanso-label">· Descansa ·</span>
-      <div class="match-team right"></div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="legend">
-      <div class="legend-item">G <span>Gan.</span></div>
-      <div class="legend-item">E <span>Emp.</span></div>
-      <div class="legend-item">P <span>Per.</span></div>
-      <div class="legend-item">GF/GC <span>Goles</span></div>
-    </div>
-    <div>
-      <span class="live-dot"></span>
-      <span class="live-label">En curso</span>
-    </div>
-  </div>
-
-</div>
+      app.innerHTML = `
+        <div class="header">
+          <div class="trophy-icon">⚽</div>
+          <div class="header-text"><h1>Los Golosos FC</h1><span>Liguilla · Clasificación</span></div>
+          <div class="badge">${badgeText}</div>
+        </div>
+        <div class="section-label">Tabla de posiciones</div>
+        <div class="col-headers"><span>#</span><span class="name-col">Jugador</span><span>Pts</span><span>G</span><span>E</span><span>P</span><span>GF</span><span>GC</span></div>
+        <div class="table-body">${rows}</div>
+        <div class="divider"></div>
+        ${matchesHtml}
+        <div class="footer">
+          <div class="legend"><div class="legend-item">G <span>Gan.</span></div><div class="legend-item">E <span>Emp.</span></div><div class="legend-item">P <span>Per.</span></div><div class="legend-item">GF/GC <span>Goles</span></div></div>
+          <div><span class="live-dot"></span><span class="live-label">En curso</span></div>
+        </div>
+      `;
+    });
+</script>
 </body>
 </html>
