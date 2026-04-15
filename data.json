@@ -1,0 +1,19 @@
+{
+  "jornadaActual": 2,
+  "totalJornadas": 5,
+  "jugadores": [
+    { "nombre": "Ubaldo", "pais": "🇫🇷", "equipo": "Francia", "pts": 4, "g": 1, "e": 1, "p": 0, "gf": 7, "gc": 4 },
+    { "nombre": "Kauan",  "pais": "🇵🇹", "equipo": "Portugal", "pts": 3, "g": 1, "e": 0, "p": 0, "gf": 4, "gc": 1 },
+    { "nombre": "Iván",   "pais": "🇩🇪", "equipo": "Alemania", "pts": 3, "g": 1, "e": 0, "p": 1, "gf": 5, "gc": 6 },
+    { "nombre": "Kamal",  "pais": "🇮🇹", "equipo": "Italia",   "pts": 1, "g": 0, "e": 1, "p": 0, "gf": 3, "gc": 3 },
+    { "nombre": "Rayan",  "pais": "🇪🇸", "equipo": "España",   "pts": 0, "g": 0, "e": 0, "p": 2, "gf": 3, "gc": 8 }
+  ],
+  "partidos": [
+    { "jornada": 1, "local": "Iván", "visitante": "Rayan",  "golesLocal": 4, "golesVisitante": 2, "descanso": false },
+    { "jornada": 1, "local": "Kamal", "visitante": "Ubaldo", "golesLocal": 3, "golesVisitante": 3, "descanso": false },
+    { "jornada": 1, "local": "Kauan", "visitante": null,     "golesLocal": null, "golesVisitante": null, "descanso": true },
+    { "jornada": 2, "local": "Iván", "visitante": "Kauan",   "golesLocal": 1, "golesVisitante": 4, "descanso": false },
+    { "jornada": 2, "local": "Ubaldo", "visitante": "Rayan", "golesLocal": 4, "golesVisitante": 1, "descanso": false },
+    { "jornada": 2, "local": "Kamal", "visitante": null,     "golesLocal": null, "golesVisitante": null, "descanso": true }
+  ]
+}
